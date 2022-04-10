@@ -1,7 +1,10 @@
 # Sem2-appointment-finder
-#simple javascript - html - php -based  program
-#displays given appointments and their possible times
-#users can vote for a time and must leave their name/can leave a comment
+--simple javascript - html - php -based  program
+--
+--displays given appointments and their possible times
+--
+--users can vote for a time and must leave their name/can leave a comment
+--
 
 #structure:
 -frontend:
