@@ -4,27 +4,32 @@ include ("logic/simpleLogic.php");
 
 $method = "";
 
-if(isset($_GET["method"])){
-    $method = $_GET["method"];
-}
-else if(isset($_POST["method"])){
+
+if(isset($_POST["method"])){
     $method = $_POST["method"];
+    $logic = new Logic();
+    $result = $logic->handleRequest($method);
+    if($result == null || $result == false){
+        respond("POST", 400, $result);
+    } 
+    else {
+        respond("POST", 200, $result);
+    }
 }
 else{
     $method = false;
+    respond($method, 400 , null);
 }
 
-$logic = new Logic();
-$result = $logic->handleRequest($method);
-if($result == null){
-    respond("POST", 400, null);
-} else {
-    respond("POST", 200, $result);
-}
+
 
 function respond($method, $http, $data){
     header('Content-Type: application/json');
     if($method == "POST"){
+        http_response_code($http);
+        echo (json_encode($data));
+    }
+    else if($method == "GET"){
         http_response_code($http);
         echo (json_encode($data));
     }

@@ -25,7 +25,7 @@ class Logic{
     }
 
     private function getAppointments(){
-        $result = $this->db->getAppointments();
+        $result = getAppointmentData();
         return $result;
     }
 

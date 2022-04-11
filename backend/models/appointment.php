@@ -2,42 +2,45 @@
 
 class Appointment {
 
-    private $app_Id;
-    private $title;
-    private $location;
-    private $address;
-    private $house_nr;
-    private $date;
-    private $expiry;
-    
-    public function getAppointmentData(){
+    public $app_Id;
+    public $title;
+    public $location;
+    public $address;
+    public $house_nr;
+    public $date;
+    public $expiry;
 
-        $db = new Database();
-        $result = $db->getAppointments();
-        if(!isset($result)){
-            return false;
-        }
+    function __construct() {}
 
-        $this->app_Id = $result["app_Id"];
-        $this->title = $result["title"];
-        $this->location = $result["location"];
-        $this->address = $result["address"];
-        $this->house_nr = $result["house_nr"];
-        $this->date = $result["date"];
-        $this->expiry = $result["expiry"];
+}
 
-        return true;
+function getAppointmentData(){
+
+    $db = new Database();
+    $result = $db->getAppointments();
+    if(!isset($result)){
+        return "appmod";
+    }
+    $appList = array();
+    foreach($result as $row){
+
+        $app = new Appointment;
+        $app->app_Id = $row['app_Id'];
+        $app->title = $row['title'];
+        $app->location = $row['location'];
+        $app->address = $row['address'];
+        $app->house_nr = $row['house_nr'];
+        $app->date = $row['date'];
+        $app->expiry = $row['expiry'];
+        
+        array_push($appList, $app);
     }
 
-    public function getAppId(){
-        if(isset($this->app_Id)){
-            return $this->app_Id;
-        }
+    if($appList[0] == null)
+    {
+        return "appmod2";
     }
-
-    public function getTitle(){
-
-    }
+    return $appList;
 }
 
 ?>
