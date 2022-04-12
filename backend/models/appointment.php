@@ -19,7 +19,7 @@ function getAppointmentData(){
     $db = new Database();
     $result = $db->getAppointments();
     if(!isset($result)){
-        return "appmod";
+        return "no result found";
     }
     $appList = array();
     foreach($result as $row){
@@ -38,9 +38,38 @@ function getAppointmentData(){
 
     if($appList[0] == null)
     {
-        return "appmod2";
+        return "collecting data unsuccessful";
     }
     return $appList;
 }
+
+function getOneAppointmentData($app_Id){
+    $db = new Database();
+    $result = $db->getOneAppointment($app_Id);
+    if(!isset($result)){
+        return "no result found";
+    }
+    $appList = array();
+    foreach($result as $row){
+
+        $app = new Appointment;
+        $app->app_Id = $row['app_Id'];
+        $app->title = $row['title'];
+        $app->location = $row['location'];
+        $app->address = $row['address'];
+        $app->house_nr = $row['house_nr'];
+        $app->date = $row['date'];
+        $app->expiry = $row['expiry'];
+        
+        array_push($appList, $app);
+    }
+
+    if($appList[0] == null)
+    {
+        return "collecting data unsuccessful";
+    }
+    return $appList;
+}
+
 
 ?>

@@ -30,6 +30,16 @@ class Database{
         return $result;
     }
 
+    function getOneAppointment($app_Id){
+        $stmt = $this->conn->prepare("SELECT * FROM appointment WHERE app_Id=?");
+        $stmt->bind_param("i", $app_Id);
+        $stmt->execute();        
+        $result = $stmt->get_result();
+        $stmt->close();
+        
+        return $result;
+    }
+
     function getTermine($fk_app_Id){
         $stmt = $this->conn->prepare("SELECT termin_Id, time FROM termin WHERE fk_app_Id=?");
         $stmt->bind_param("i", $fk_app_Id);

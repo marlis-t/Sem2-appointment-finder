@@ -8,16 +8,9 @@ $(document).ready(function() {
     });
 
     $("#appointments").hide();
-    $("#show-app").click(function () {
+    $("#show-app").on("click", function () {
         showAppointments();
     });
 });
-    
-/*
-$(function(){
-    $("#show-app").click(function(){
-    $("#txt").append("Gre aus Wien");
-    });
-});*/
     
 
