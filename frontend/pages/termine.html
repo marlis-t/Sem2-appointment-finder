@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css" href="/Sem2-appointment-finder/frontend/style/css/style.css">
         <script src="/Sem2-appointment-finder/frontend/scripts/startTerm.js"></script>
         <script src="/Sem2-appointment-finder/frontend/scripts/show-termine.js"></script>
+        <script src="/Sem2-appointment-finder/frontend/scripts/vote.js"></script>
+        <script src="/Sem2-appointment-finder/frontend/scripts/show-votes.js"></script>
     </head>
 
     <navbar></navbar>
@@ -23,8 +25,8 @@
                 <div class="col-sm">All possible timeslots for the selected appointment are depicted below:</div>
                 <br>
             </div>
-            <div id="error"></div> <div id="errorCode"></div>
-            <div id="success"></div>
+            <div id="error" class="col-sm error"></div> <div id="errorCode"></div>
+            <div id="success" class="col-sm success"></div>
             <div id="termine">
                 <table id="term-tab" class="table table-responsive table-sm">
                     <thead>
@@ -36,7 +38,7 @@
                     <tbody id="termin-list"></tbody>
                 </table>
             </div>
-            <div id = "comment"></div>
+            <div id="comment"></div>
             
         </div>
         

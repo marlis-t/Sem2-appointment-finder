@@ -2,6 +2,7 @@
 
 require_once("models/appointment.php");
 require_once("models/termin.php");
+require_once("models/votes.php");
 
 
 class Database{
@@ -50,16 +51,16 @@ class Database{
         return $result;
     }
 
-    function getUserComments($termin_Id){
-        $stmt = $this->conn->prepare("SELECT username, comment FROM user_termin WHERE fk_termin_Id=?");
-        $stmt->bind_param("i", $termin_Id);
+    function getVotes($fk_termin_Id){
+        $stmt = $this->conn->prepare("SELECT * FROM user_termin WHERE fk_termin_Id=?");
+        $stmt->bind_param("i", $fk_termin_Id);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         
         return $result;
     }
-    //always check if alreadyVoted, if null, then proceed
+    
     function saveChoiceAndComment($fk_termin_Id, $username, $comment){
         $stmt = $this->conn->prepare("INSERT INTO user_termin (fk_termin_Id, username, comment) VALUES(?, ?, ?)");
         $stmt->bind_param("iss", $fk_termin_Id, $username, $comment);

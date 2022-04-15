@@ -50,8 +50,8 @@ class Logic{
     }
 
     private function getComments(){ //$termin_Id, create class in models
-        $termin_Id = $_POST["termin_id"];
-        $result = $this->db->getUserComments($termin_Id);
+        $fk_termin_Id = $_POST["fk_termin_id"];
+        $result = getVotesData($fk_termin_Id);
         return $result;
     }
 
