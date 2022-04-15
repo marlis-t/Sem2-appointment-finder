@@ -75,24 +75,41 @@ function showTermine(){
 }
 
 function uploadChoice(term_Id){
-    $("#errorUsername"+term_Id).remove();
-    $("tr[id^='successUpload']").remove();
-    $("tr[id^='errorUpload']").remove();
+   $("#error").empty();
+   $("#success").empty();
+  
     var allOk = true;
+    var username = $("#username"+term_Id).val();
+    var comment = $("#userComment"+term_Id).val();
     allOk = checkIfAlphanumeric(allOk, term_Id);
-    allOk = checkIfAlreadyVoted(allOk, term_Id, $("#username"+term_Id).val());
+   // if(allOk === true){
+        //$("#success").append("finished in alphanum " + term_Id + username+comment);
+    //}
+    allOk = checkIfAlreadyVoted(allOk, term_Id, username);
+    /*if(allOk===true){
+        $("#success").append("finished in alredyvoted " + term_Id + username);
+    }*/
 
-    if(allOk == true) {
-        submitInput(term_Id);
+    if(allOk===true) {
+        submitInput(term_Id, username, comment);
     }
+    /*else if(allOk===false){
+        $("#error").append("in already voted is wrong");
+    }*/
 }
 
 function checkIfAlphanumeric(allIsOk, term_Id){
     var allOk = allIsOk;
     var username = $("#username"+term_Id).val();
+    if(username.length === 0) {
+        $("#error").append("You must type in a username to vote for timeslot #"+term_Id);
+        allOk = false;
+        return allOk;
+    }
     if(!/^[a-zA-Z0-9]+$/.test(username)){
         allOk = false;
-        ("<tr id='errorUsername" + term_Id +"' class='error'><td>Only alphanumeric characters allowed for username</td></tr>").insertAfter("#vote"+term_Id);
+        $("#error").append("Only alphanumeric characters allowed for username in timeslot #"+term_Id);
+        return allOk;
     }
     return allOk;
 }
@@ -104,43 +121,49 @@ function checkIfAlreadyVoted(allIsOk, term_Id, username){
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
         data: {
             method: "alreadyVoted", 
-            fk_term_id: term_Id,
+            fk_term_Id: term_Id,
             username: username
         },
         cache: false,
         dataType: "json",
         success: function (response) {
            if(response === "upload possible"){
-               return allOk;
-           }
-            
+               //$("#success").append("upload possible");
+               allOk = true;
+               
+            }  
         },
         error: function(e){
-            ("<tr id='errorUpload" + term_Id +"' class='error'><td>You already voted for this timeslot of that appointment</td></tr>").insertAfter("#vote"+term_Id);
+            $("#error").append("<br>You already voted for the timeslot #"+term_Id+" of this appointment");
+            //$("<tr id='errorUpload" + term_Id +"' class='error'><td>You already voted for this timeslot of that appointment</td></tr>").insertAfter("#vote"+term_Id);
             allOk = false;
-            return allOk;
+            //return "notposs"; doesnt work
         }
     });
+    return allOk;
 }
 
-function submitInput(term_Id) {
+function submitInput(term_Id, username, comment) {
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
         data: {
             method: "uploadChoice", 
-            fk_term_id: term_Id,
-            username: $("#username"+term_Id).val(),
-            comment: $("#userComment"+term_Id).val()
+            fk_term_Id: term_Id,
+            username: username,
+            comment: comment
         },
         cache: false,
         dataType: "json",
         success: function (response) {
-            ("<tr id='successUpload" + term_Id +"' class='success'><td>The upload was successful</td></tr>").insertAfter("#vote"+term_Id);
+            $("#success").append(response);
+            //$("#success").append("The upload of your vote for timeslot #"+term_Id+" was successful");
+            $("#username"+term_Id).val("");
+            $("#userComment"+term_Id).val("");
 
         },
         error: function(e){
-            ("<tr id='errorUpload" + term_Id +"' class='error'><td>An error occured while uploading</td></tr>").insertAfter("#vote"+term_Id);
+            $("#error").append("<br>An error occured while uploading your vote for timeslot #"+term_Id);
         }
     });
 

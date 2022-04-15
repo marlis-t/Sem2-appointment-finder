@@ -63,9 +63,12 @@ class Database{
     function saveChoiceAndComment($fk_termin_Id, $username, $comment){
         $stmt = $this->conn->prepare("INSERT INTO user_termin (fk_termin_Id, username, comment) VALUES(?, ?, ?)");
         $stmt->bind_param("iss", $fk_termin_Id, $username, $comment);
-        $stmt->execute();
+        if($stmt->execute()){
+            $stmt->close();
+            return true;
+        }
         $stmt->close();
-        return;
+        return false;
     }
 
     function getExpired(){

@@ -61,12 +61,12 @@ class Logic{
     }
 
     private function alreadyVoted(){
-        $fk_term_Id = $_POST["fk_term_id"];
+        $fk_term_Id = $_POST["fk_term_Id"];
         $username = $_POST["username"];
 
         $result = $this->db->alreadyVoted($fk_term_Id, $username);
 
-        if($result == null){
+        if ($result->num_rows === 0){
             return "upload possible";
         }
         return null;
@@ -92,15 +92,20 @@ class Logic{
             return null;
         }
 
-        $possible = $this->db->alreadyVoted($fk_term_Id, $username);
+        $result = $this->db->alreadyVoted($fk_term_Id, $username);
 
-        if($possible !==null){
+        if ($result->num_rows === 0){
+            if($this->db->saveChoiceAndComment($fk_term_Id, $username, $comment)){
+                return "completed";
+            }
+            else{
+                return "failed to insert";
+            }
+            
+        }
+        else{
             return null;
         }
-        
-        $this->db->saveChoiceAndComment($fk_term_Id, $username, $comment);
-
-        return "completed";
     }
 }
 
