@@ -50,7 +50,7 @@ class Logic{
     }
 
     private function getComments(){ //$termin_Id, create class in models
-        $fk_termin_Id = $_POST["fk_termin_id"];
+        $fk_termin_Id = $_POST["fk_termin_Id"];
         $result = getVotesData($fk_termin_Id);
         return $result;
     }

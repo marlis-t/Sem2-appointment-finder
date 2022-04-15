@@ -1,4 +1,6 @@
 function showComments(term_Id){
+    $("#comment").fadeOut("fast");
+    $("#vote-list").empty();
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
@@ -10,21 +12,20 @@ function showComments(term_Id){
         dataType: "json",
         success: function (response) {
             var myResponse = response;
-            if(myResponse === null){
-                $("#error").append("<br>No data about votes could be retrieved");
+            if(myResponse === "no votes found"){
+                $("#comHead").text("Nobody voted for this timeslot");
             }
             else{
                 $.each(myResponse, function(i, p) {
-                    var app_Id = p["app_Id"];
-                    var title = p["title"];
-                    var location = p["location"];
-                    var address = p["address"];
-                    var house_nr = p["house_nr"];
-                    var date = p["date"];
-                    var expiry = p["expiry"];
+                    var user_termin_Id = p["user_termin_Id"];
+                    var fk_termin_Id = p["fk_termin_Id"];
+                    var username = p["username"];
+                    var comment = p["comment"];
 
-                    $("#app-info").append("<li> Title: " + title + "</li><li> Location: " + location + "</li><li> Address: " + address + "</li><li> House number: " + house_nr + "</li><li> Takes place on: " + date + "</li><li> Voting expires on: " + expiry + "</li>");
+                    $("#vote-list").append("<tr id ='" + user_termin_Id + "'><td>" + username + "</td><td>" + comment + "</td></tr>");
                 });
+                $("#comHead").text("These users voted for timeslot #"+term_Id);
+                $("#comment").fadeIn("slow");
             }
         },
         error: function(e){
