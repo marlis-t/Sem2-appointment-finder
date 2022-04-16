@@ -6,15 +6,11 @@ $(document).ready(function() {
     .then(data => {
         document.querySelector("navbar").innerHTML = data;
     });
-});
-    
 
-$(function(){
-    $("#show-app").click(function(){
-    $("#txt").append("Gre aus Wien");
+    $("#appointments").hide();
+    $("#show-app").on("click", function () {
+        showAppointments();
     });
 });
     
-$(function(){
-    hello();
-})
+

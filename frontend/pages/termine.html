@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/Sem2-appointment-finder/frontend/style/css/style.css">
+        <script src="/Sem2-appointment-finder/frontend/scripts/startTerm.js"></script>
+        <script src="/Sem2-appointment-finder/frontend/scripts/show-termine.js"></script>
+        <script src="/Sem2-appointment-finder/frontend/scripts/vote.js"></script>
+        <script src="/Sem2-appointment-finder/frontend/scripts/show-votes.js"></script>
+    </head>
+
+    <navbar></navbar>
+    <body>
+        <div class="container">
+            <h2 class="col-sm" id="heading">Here you can see further information!</h2>
+            <div class="col-sm">
+                <h5 id="heading">Details of the selected appointment:</h5>
+                <ul id="app-info"></ul>
+            </div>
+            <div id="welcome">
+                <div class="col-sm">All possible timeslots for the selected appointment are depicted below:</div>
+                <br>
+            </div>
+            <div id="error" class="col-sm error"></div> <div id="errorCode"></div>
+            <div id="success" class="col-sm success"></div>
+            <div id="termine">
+                <table id="term-tab" class="table table-responsive table-sm">
+                    <thead>
+                        <th>ID</th>
+                        <th>Time</th>
+                        <th>Select timeslots</th>
+                        <th>Comments</th>
+                    </thead>
+                    <tbody id="termin-list"></tbody>
+                </table>
+            </div>
+            <div id="comment"></div>
+            
+        </div>
+        
+    </body>
+</html>
