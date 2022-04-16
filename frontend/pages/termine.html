@@ -11,14 +11,15 @@
         <script src="/Sem2-appointment-finder/frontend/scripts/show-termine.js"></script>
         <script src="/Sem2-appointment-finder/frontend/scripts/vote.js"></script>
         <script src="/Sem2-appointment-finder/frontend/scripts/show-votes.js"></script>
+        <script src="/Sem2-appointment-finder/frontend/scripts/expired-app.js"></script>
     </head>
 
     <navbar></navbar>
     <body>
         <div class="container">
-            <h2 class="col-sm" id="heading">Here you can see further information!</h2>
+            <h2 class="col-sm heading">Here you can see further information!</h2>
             <div class="col-sm">
-                <h5 id="heading">Details of the selected appointment:</h5>
+                <h5 class="heading">Details of the selected appointment:</h5>
                 <ul id="app-info"></ul>
             </div>
             <div id="welcome">
@@ -38,7 +39,16 @@
                     <tbody id="termin-list"></tbody>
                 </table>
             </div>
-            <div id="comment"></div>
+            <h5 id="comHead" class="heading"></h5>
+            <div id="comment">
+                <table id="vote-tab" class="table table-responsive table-sm">
+                    <thead>
+                        <th>Username</th>
+                        <th>Comment (optional)</th>
+                    </thead>
+                    <tbody id="vote-list"></tbody>
+                </table>
+            </div>
             
         </div>
         

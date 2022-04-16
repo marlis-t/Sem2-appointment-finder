@@ -29,10 +29,6 @@ function respond($method, $http, $data){
         http_response_code($http);
         echo (json_encode($data));
     }
-    else if($method == "GET"){
-        http_response_code($http);
-        echo (json_encode($data));
-    }
     else{
         http_response_code(405);
         echo ("Used method unavailable!");

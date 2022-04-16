@@ -15,9 +15,10 @@ function getVotesData($fk_termin_Id){
 
     $db = new Database();
     $result = $db->getVotes($fk_termin_Id);
-    if(!isset($result)){
-        return "no result found";
+    if ($result->num_rows === 0){
+        return "no votes found";
     }
+
     $voteList = array();
     foreach($result as $row){
 
@@ -28,11 +29,6 @@ function getVotesData($fk_termin_Id){
         $vote->comment = $row['comment']; 
         
         array_push($voteList, $vote);
-    }
-
-    if($voteList[0] == null)
-    {
-        return "collecting data unsuccessful";
     }
     return $voteList;
 }

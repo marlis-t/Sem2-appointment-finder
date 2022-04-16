@@ -6,6 +6,8 @@ $(document).ready(function() {
     .then(data => {
         document.querySelector("navbar").innerHTML = data;
     });
+    $("#comment").hide();
+    $("#termine").hide();
     showTermine();
 });
     

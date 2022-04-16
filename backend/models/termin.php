@@ -12,6 +12,9 @@ function getTerminData($fk_app_Id){
     if(!isset($result)){
         return "no result found";
     }
+    if($result->num_rows === 0){
+        return "no result found";
+    }
     $termList = array();
     foreach($result as $row){
         $term = new Termin;
@@ -23,7 +26,7 @@ function getTerminData($fk_app_Id){
 
     if($termList[0] == null)
     {
-        return "collecting data unsuccessful";
+        return null;
     }
     return $termList;
 }
