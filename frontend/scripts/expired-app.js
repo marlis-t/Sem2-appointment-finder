@@ -1,5 +1,5 @@
 //get id of the xpired ones
-function getExpired(){
+function getExpiredApp(){
     //all expired ones toggle class expired
     //still more clickable
     $.ajax({
@@ -11,12 +11,26 @@ function getExpired(){
         cache: false,
         dataType: "json",
         success: function (response) {
-            var myResponse = response;
-            
-            
-                $.each(myResponse, function(i, p) {
-                    
+            var expArray = response;
+            if(expArray !== "no expired appointments"){
+                
+                $("#appointment-list tr").each(function(){
+                    var trId = $(this).attr("id");
+                   
+                    for(var i=0; i<expArray.length; i++){
+                        var expId = expArray[i];
+                        //$("#error").append(trId + " trId " + expId + " index, ");
+                        if(trId == expId){
+                            $("#"+trId).addClass("expired");
+                          break;
+                        }
+                    }
+
                 });
+            }
+            /*$.each(expArray, function(i, p) {
+                $("#error").append(p + ", ");
+            });*/
             
         },
         error: function(e){

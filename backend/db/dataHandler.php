@@ -73,7 +73,7 @@ class Database{
     }
 
     function getExpired(){
-        $stmt = $this->conn->prepare("SELECT app_Id from appointment where expiry < GETDATE()"); //zb gestern kleiner wie heute
+        $stmt = $this->conn->prepare("SELECT app_Id from appointment where expiry < NOW()"); //zb gestern kleiner wie heute
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;

@@ -23,7 +23,7 @@ function showAppointments(){
 
                     $("#appointment-list").append("<tr id ='" + app_Id + "'><td>" + title + "</td><td>" + location + "</td><td>" + date + "</td><td>" + expiry + "</td><td><button onclick='toTermine("+app_Id+")' id = 'moreInfo' class = 'btn btn-primary'>></button></td></tr>");
                 });
-                //getExpired();
+                getExpiredApp();
                 $("#appointments").fadeIn("slow");
                 
             }
@@ -36,6 +36,14 @@ function showAppointments(){
 }
 
 function toTermine(app_Id){
-    sessionStorage.setItem("app_Id", app_Id);
+    if($("#"+app_Id).hasClass("expired")){
+        //works
+        sessionStorage.setItem("app_Id", app_Id);
+        sessionStorage.setItem("expired", "yes");
+    }
+    else{
+        sessionStorage.setItem("app_Id", app_Id);
+    }
+    
     location.href = "pages/termine.html";
 }
