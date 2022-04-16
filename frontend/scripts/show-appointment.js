@@ -10,8 +10,8 @@ function showAppointments(){
         dataType: "json",
         success: function (response) {
             var myResponse = response;
-            if(myResponse === null){
-                $("#error").append("No data could be retrieved");
+            if(myResponse === "no result found"){
+                $("#error").append("No appointments in database");
             }
             else{
                 $.each(myResponse, function(i, p) {
@@ -23,25 +23,19 @@ function showAppointments(){
 
                     $("#appointment-list").append("<tr id ='" + app_Id + "'><td>" + title + "</td><td>" + location + "</td><td>" + date + "</td><td>" + expiry + "</td><td><button onclick='toTermine("+app_Id+")' id = 'moreInfo' class = 'btn btn-primary'>></button></td></tr>");
                 });
-    
+                //getExpired();
                 $("#appointments").fadeIn("slow");
-                getExpired();
+                
             }
         },
         error: function(e){
             $("#error").append("An error occurred while loading the data");
-            $("#appointments").fadeIn("slow");
+            //$("#appointments").fadeIn("slow");
         }
     });
 }
 
 function toTermine(app_Id){
-    $("#error").append(app_Id);
     sessionStorage.setItem("app_Id", app_Id);
     location.href = "pages/termine.html";
 }
- //get id of the xpired ones
- function getExpired(){
-    //all expired ones toggle class expired
-    //still more clickable
- }

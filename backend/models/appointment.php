@@ -38,7 +38,7 @@ function getAppointmentData(){
 
     if($appList[0] == null)
     {
-        return "collecting data unsuccessful";
+        return null;
     }
     return $appList;
 }
@@ -66,9 +66,26 @@ function getOneAppointmentData($app_Id){
 
     if($appList[0] == null)
     {
-        return "collecting data unsuccessful";
+        return null;
     }
     return $appList;
+}
+
+function getExpiredId(){
+    $db = new Database;
+    $result = $db->getExpired();
+
+    if($result->num_rows === 0){
+        return "no expired appointments";
+    }
+
+    $expList = array();
+    foreach($result as $row){
+        $expId = $row['app_Id'];
+        array_push($expList, $expId);
+    }
+
+    return $expList;
 }
 
 

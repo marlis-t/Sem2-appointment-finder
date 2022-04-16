@@ -1,4 +1,4 @@
-function showComments(term_Id){
+function showVotes(term_Id){
     $("#comment").fadeOut("fast");
     $("#vote-list").empty();
     $.ajax({

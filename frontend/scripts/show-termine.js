@@ -13,8 +13,8 @@ function showTermine(){
         dataType: "json",
         success: function (response) {
             var myResponse = response;
-            if(myResponse === null){
-                $("#error").append("No data could be retrieved");
+            if(myResponse === "no result found"){
+                $("#error").append("No data could be retrieved for this appointment");
             }
             else{
                 $.each(myResponse, function(i, p) {
@@ -47,12 +47,12 @@ function showTermine(){
         dataType: "json",
         success: function (response) {
             var myResponse = response;
-            if(myResponse === null){
-                $("#error").append("No data could be retrieved");
+            if(myResponse === "no result found"){
+                $("#error").append("No timeslots for this appointment");
             }
             else{
                 $.each(myResponse, function(i, p) {
-                    $("#termin-list").append("<tr id ='" + p["termin_Id"] + "'><td>" + p["termin_Id"] + "</td><td>" + p["time"] + " Uhr</td><td><div class='form-check'><input class='form-check-input' type='checkbox' id='checkbox"+p["termin_Id"] +"'><label class='form-check-label'> vote </label></div></td><td><button onclick='showComments("+ p["termin_Id"]+")' id = 'showcom' class = 'btn btn-primary'>></button></td></tr>");
+                    $("#termin-list").append("<tr id ='" + p["termin_Id"] + "'><td>" + p["termin_Id"] + "</td><td>" + p["time"] + " Uhr</td><td><div class='form-check'><input class='form-check-input' type='checkbox' id='checkbox"+p["termin_Id"] +"'><label class='form-check-label'> vote </label></div></td><td><button onclick='showVotes("+ p["termin_Id"]+")' id = 'showcom' class = 'btn btn-primary'>></button></td></tr>");
                 });
 
                 $("input[id^='checkbox']").change(function(){
@@ -65,6 +65,7 @@ function showTermine(){
                         $("#vote"+term_Id).remove();
                     } 
                 });
+                $("#termine").show();
             }
         },
         error: function(e){

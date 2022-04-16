@@ -57,7 +57,8 @@ class Logic{
 
     private function getExpired(){
         //only ids, get into array
-        $result = $this->db->getExpired();
+        $result = getExpiredId();
+        return $result;
     }
 
     private function alreadyVoted(){

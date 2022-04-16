@@ -7,6 +7,7 @@ $(document).ready(function() {
         document.querySelector("navbar").innerHTML = data;
     });
     $("#comment").hide();
+    $("#termine").hide();
     showTermine();
 });
     
