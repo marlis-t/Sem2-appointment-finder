@@ -2,6 +2,12 @@ function showTermine(){
     //call is exp function with app_Id, if it is, no adding of checkbox
 
     var app_Id = sessionStorage.getItem("app_Id");
+    var exp = sessionStorage.getItem("expired");
+    if(exp == "yes"){
+      $("#exp").text("This appointment is expired. Voting is no longer possible."); 
+      $("#sel-msg").empty(); 
+    }
+    
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
@@ -54,6 +60,10 @@ function showTermine(){
                 $.each(myResponse, function(i, p) {
                     $("#termin-list").append("<tr id ='" + p["termin_Id"] + "'><td>" + p["termin_Id"] + "</td><td>" + p["time"] + " Uhr</td><td><div class='form-check'><input class='form-check-input' type='checkbox' id='checkbox"+p["termin_Id"] +"'><label class='form-check-label'> vote </label></div></td><td><button onclick='showVotes("+ p["termin_Id"]+")' id = 'showcom' class = 'btn btn-primary'>></button></td></tr>");
                 });
+
+                if(exp=="yes"){
+                    $("input[id^='checkbox']").attr("disabled", true);
+                }
 
                 $("input[id^='checkbox']").change(function(){
                     var term_Id = $(this).parent().parent().parent().attr("id");

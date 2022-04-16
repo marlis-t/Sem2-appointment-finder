@@ -43,6 +43,7 @@ function toTermine(app_Id){
     }
     else{
         sessionStorage.setItem("app_Id", app_Id);
+        sessionStorage.setItem("expired", "no");
     }
     
     location.href = "pages/termine.html";
