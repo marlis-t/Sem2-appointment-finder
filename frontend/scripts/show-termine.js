@@ -54,7 +54,7 @@ function showTermine(){
         success: function (response) {
             var myResponse = response;
             if(myResponse === "no result found"){
-                $("#error").append("No timeslots for this appointment");
+                $("#error").append("<h5 class='heading'>No timeslots for this appointment</h5>");
             }
             else{
                 $.each(myResponse, function(i, p) {

@@ -1,6 +1,7 @@
 function showVotes(term_Id){
     $("#comment").fadeOut("fast");
     $("#vote-list").empty();
+    $("#close-btn").empty();
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
@@ -22,9 +23,10 @@ function showVotes(term_Id){
                     var username = p["username"];
                     var comment = p["comment"];
 
-                    $("#vote-list").append("<tr id ='" + user_termin_Id + "'><td>" + username + "</td><td>" + comment + "</td></tr>");
+                    $("#vote-list").append("<tr id ='" + user_termin_Id + "'><td>" + username + "</td><td>" + comment + "</td><td></td></tr>");                
                 });
                 $("#comHead").text("These users voted for timeslot #"+term_Id);
+                $("#close-btn").append("<button onclick='hideVotes()' id = 'hidvotes' class = 'btn btn-danger'>\u00D7</button>");
                 $("#comment").fadeIn("slow");
             }
         },
@@ -33,4 +35,11 @@ function showVotes(term_Id){
         }
     });
 
+}
+
+function hideVotes() {
+    $("#comment").fadeOut("fast");
+    $("#vote-list").empty();
+    $("#comHead").empty();
+    $("#close-btn").empty();
 }
