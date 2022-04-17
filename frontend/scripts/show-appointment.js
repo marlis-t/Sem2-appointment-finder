@@ -21,7 +21,7 @@ function showAppointments(){
                     var date = p["date"];
                     var expiry = p["expiry"];
 
-                    $("#appointment-list").append("<tr id ='" + app_Id + "'><td>" + title + "</td><td>" + location + "</td><td>" + date + "</td><td>" + expiry + "</td><td><button onclick='toTermine("+app_Id+")' id = 'moreInfo' class = 'btn btn-primary'>></button></td></tr>");
+                    $("#appointment-list").append("<tr id ='" + app_Id + "'><td>" + title + "</td><td>" + location + "</td><td>" + date + "</td><td>" + expiry + "</td><td><button onclick='toTermine("+app_Id+")' id = 'moreInfo' class = 'btn btn-primary'>></button></td><td><button onclick='deleteApp("+app_Id+")' id = 'deleteApp' class = 'btn btn-danger'>\u00D7</button></td></tr>");
                 });
                 getExpiredApp();
                 $("#appointments").fadeIn("slow");

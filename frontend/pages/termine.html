@@ -51,8 +51,10 @@
                     <tbody id="vote-list"></tbody>
                 </table>
             </div>
-            <div class="col-sm"><button id="finVote" class="confirm" type="button">Finish</button></div>
+            <!--<div class="col-sm"><button onclick="finishVoting()" id="finVote" class="btn btn-success">Finish</button></div>-->
+            <button type="button" id="finVote" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#finishModal">Finish</button>
             
+            <modal></modal>
         </div>
         
     </body>

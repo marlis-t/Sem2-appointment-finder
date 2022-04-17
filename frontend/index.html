@@ -12,6 +12,7 @@
     <script src="scripts/show-appointment.js"></script>
     <script src="scripts/show-termine.js"></script>
     <script src="scripts/expired-app.js"></script>
+    <script src="scripts/deleteApp.js"></script>
 </head>
 
 <navbar></navbar>
@@ -26,10 +27,11 @@
                 <div class="col-sm-4">or Coworkers</div>
             </div>
             <div class="col-sm">If you want to see the appointments you can vote for, </div><br>
-            <div class="col-sm">just <button class="btn btn-primary" type="button" id="show-app">click here</button> and get startet.</div>
+            <div class="col-sm">just click <button class="btn btn-primary" type="button" id="show-app"> here</button> and get started.</div>
             <br>
         </div>
-
+        <div id="success" class="col-sm success"></div>
+        <div id="error" class="col-sm error"></div>
         <div id="appointments">
             <table id="app-tab" class="table table-responsive table-sm">
                 <thead>
@@ -38,11 +40,11 @@
                     <th>Date</th>
                     <th>Expires on</th>
                     <th>more Information</th>
+                    <th>Delete</th>
                 </thead>
                 <tbody id="appointment-list"></tbody>
             </table>
-        </div>
-        <div id="error" class="col-sm error"></div>
+        </div> 
     </div>
 </body>
 </html>

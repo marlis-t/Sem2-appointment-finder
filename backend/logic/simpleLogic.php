@@ -27,6 +27,8 @@ class Logic{
                 return $this->uploadChoice();
             case "alreadyVoted":
                 return $this->alreadyVoted();
+            case "deleteAppointment":
+                return $this->deleteApp();
             default:
                 return null;
         }
@@ -107,6 +109,14 @@ class Logic{
         else{
             return null;
         }
+    }
+
+    private function deleteApp(){
+        $app_Id = $_POST["app_Id"];
+        if($this->db->deleteAppointment($app_Id)){
+            return "deleted";
+        }
+        return null;
     }
 }
 
