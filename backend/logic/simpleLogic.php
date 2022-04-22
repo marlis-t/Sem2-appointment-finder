@@ -102,12 +102,12 @@ class Logic{
                 return "completed";
             }
             else{
-                return "failed to insert";
+                return null;
             }
             
         }
         else{
-            return null;
+            return "already voted";
         }
     }
 
