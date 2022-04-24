@@ -41,6 +41,7 @@ function showOneAppointment(){
         },
         error: function(e){
             $("#error").append("<div class='alert alert-danger'>An error occured while loading the data </div>");
+            var myTimeout = setTimeout(removeInfoPopup(1), 5000);
         }
     });
 
@@ -79,7 +80,7 @@ function showTermine(app_Id) {
                     var term_Id = $(this).parent().parent().parent().attr("id");
                     if($(this).is(':checked')){
                         $("<tr id='vote"+term_Id+"'><td><div class='form'><label class='form-control-label' for='username"+term_Id+"'>Username</label><input class='form-control' type='text' id='username"+term_Id+"' placeholder='eg. maxmust' required></div></td><td><div class='form-check'><label class='form-check-label' for='userComment"+term_Id+"'>Comment</label><textarea class='form-control' rows='5' id='userComment"+term_Id+"' placeholder='optional'></textarea></div></td><td></td><td><button onclick='uploadChoice("+term_Id+")' class='btn btn-info' id='sendCom'>submit</button></td></tr>").insertAfter("#"+term_Id);
-                     //send the input with termin_Id to database
+                    
                     } 
                     else{
                         $("#vote"+term_Id).remove();
@@ -90,6 +91,26 @@ function showTermine(app_Id) {
         },
         error: function(e){
             $("#error").append("<div class='alert alert-danger'>An error occured while loading the data</div>");
+            var myTimeout = setTimeout(removeInfoPopup, 5000, 1);
         }
+    });
+}
+
+function removeInfoPopup(modus){
+    if(modus == 1){
+        var rem = function() {
+        
+            return $("#error").children().fadeOut("slow");
+        
+        };
+    }
+    else{
+        return $("#success").children().fadeOut("slow");
+    }
+    
+
+    $.when(rem()).done(function() {
+        $("#success").empty();
+        $("#error").empty();
     });
 }

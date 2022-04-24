@@ -14,14 +14,15 @@ function deleteApp(app_Id){
             if(myResponse === "deleted"){
                 $("#success").append("<div class='alert alert-success'>The appointment was deleted.</div>");
                 showAppointments();
+                var myTimeout = setTimeout(removeInfoPopup, 4000, 2);
             }
         },
         error: function(e){
             $("#error").append("<div class='alert alert-danger'>An error occured while deleting the appointment.</div>");
+            var myTimeout = setTimeout(removeInfoPopup, 4000, 1);
         }
     });
 }
-
 function emptyInDeleteApp(){
     $("#success").empty();
     $("#error").empty();

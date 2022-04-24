@@ -31,6 +31,7 @@ function showVotes(term_Id){
         },
         error: function(e){
             $("#error").append("<div class='alert alert-danger'>An error occured while loading the data about the votes.</div>");
+            var myTimeout = setTimeout(removeInfoPopup, 5000, 1);
         }
     });
 

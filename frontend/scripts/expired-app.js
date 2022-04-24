@@ -11,14 +11,12 @@ function getExpiredApp(){
         success: function (response) {
             var expArray = response;
             if(expArray !== "no expired appointments"){
-            //if(expArray !== "no expired appointments")
                 
                 $("#appointment-list tr").each(function(){
                     var trId = $(this).attr("id");
                    
                     for(var i=0; i<expArray.length; i++){
                         var expId = expArray[i];
-                        //$("#error").append(trId + " trId " + expId + " index, ");
                         if(trId == expId){
                             $("#"+trId).addClass("expired");
                           break;
@@ -26,12 +24,13 @@ function getExpiredApp(){
                     }
 
                 });
-                $("#exp-msg").append("<div id='exp-info' class='alert alert-secondary'>*Greyed-out appointments are expired. You cannot vote for them anymore, but viewing the placed votes and comments is still possible.</div>")
+                $("#expired-msg").append("<div id='exp-info' class='alert alert-secondary'>*Greyed-out appointments are expired. You cannot vote for them anymore, but viewing the placed votes and comments is still possible.</div>")
             }
             
         },
         error: function(e){
             $("#error").append("<div class='alert alert-danger'>An error occured while loading the data about appointment expiry.</div>");
+            var myTimeout = setTimeout(removeInfoPopup, 4000, 1);
         }
     });
 }
