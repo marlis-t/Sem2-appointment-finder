@@ -17,42 +17,46 @@
     <navbar></navbar>
     <body>
         <div class="container">
-            <h2 class="col-sm heading">Here you can see further information!</h2>
+            <h2 class="col-sm heading">Here you can see further information!</h2> <br>
             <div class="col-sm">
                 <h5 class="heading">Details of the selected appointment:</h5>
                 <ul id="app-info"></ul>
                 <h5 class="heading" id="exp"></h5>
             </div>
             <div id="welcome">
-                <div class="col-sm" id="sel-msg">All possible timeslots for the selected appointment are depicted below:</div>
+                <div class="col-sm alert alert-info" id="sel-msg">All possible timeslots for the selected appointment are depicted below:</div>
                 <br>
             </div>
             <div id="error" class="col-sm error"></div> <div id="errorCode"></div>
             <div id="success" class="col-sm success"></div>
             <div id="termine">
-                <table id="term-tab" class="table table-responsive table-sm">
-                    <thead>
+                <table id="term-tab" class="table table-responsive table-sm table-hover">
+                    <thead class="table-info">
                         <th>ID</th>
                         <th>Time</th>
                         <th>Select timeslots</th>
                         <th>Votes</th>
                     </thead>
-                    <tbody id="termin-list"></tbody>
+                    <tbody id="termin-list" class="table-light"></tbody>
                 </table>
-            </div>
-            <h5 id="comHead" class="heading"></h5>
+            </div><br>
+            
             <div id="comment">
+                <h5 id="comHead" class="heading"></h5>
                 <table id="vote-tab" class="table table-responsive table-sm">
-                    <thead>
+                    <thead class="table-info">
                         <th>Username</th>
                         <th>Comment (optional)</th>
                         <th id="close-btn"></th>
                     </thead>
-                    <tbody id="vote-list"></tbody>
+                    <tbody id="vote-list" class="table-light"></tbody>
                 </table>
-            </div>
-            <div class="col-sm"><button id="finVote" class="confirm" type="button">Finish</button></div>
+            </div><br>
+            <!--<div class="col-sm"><button onclick="finishVoting()" id="finVote" class="btn btn-success">Finish</button></div>-->
+            <button type="button" id="finVote" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#finishModal">Finish</button> <br>
             
+            <modal></modal>
+            <br>
         </div>
         
     </body>

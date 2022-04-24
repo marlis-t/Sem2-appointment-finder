@@ -3,46 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
     <link rel="stylesheet" type="text/css" href="style/css/style.css">
-    <script type="text/javascript" src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="scripts/startApp.js"></script>
     <script src="scripts/show-appointment.js"></script>
     <script src="scripts/show-termine.js"></script>
     <script src="scripts/expired-app.js"></script>
+    <script src="scripts/deleteApp.js"></script>
 </head>
 
 <navbar></navbar>
 <body>
+    <div class="container-fluid">
+        <h2 class="col-sm alert alert-info" id="heading">Welcome to the <strong>AppointmentFinder!</strong></h2>
+    </div>
     <div class="container">
-        <h2 class="col-sm" id="heading">Welcome to the AppointmentFinder!</h2>
         <div id="welcome">
-            <div class="col-sm">Find the ideal timeslot for all your meetings, be it with:</div>
+            <div class="col-sm">Find the ideal timeslot for all your meetings, be it with:</div><br>
             <div class="row">
-                <div class="col-sm-4">Friends</div>
-                <div class="col-sm-4">Family</div>
-                <div class="col-sm-4">or Coworkers</div>
-            </div>
-            <div class="col-sm">If you want to see the appointments you can vote for, </div><br>
-            <div class="col-sm">just <button class="btn btn-primary" type="button" id="show-app">click here</button> and get startet.</div>
+                <div class="col-sm-4">
+                        <div class="card">
+                            <img class="card-img-top" src="style/img/friends-sm.jpg" alt="friends at dinner" ">
+                            <div class="card-body bg-info">
+                                <h4 class="card-title">Friends</h4>
+                            </div>
+                        </div>
+                </div> 
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img class="card-img-top" src="style/img/family-dinner-sm.jpg" alt="family gettogether" ">
+                        <div class="card-body bg-info">
+                            <h4 class="card-title">Family</h4>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img class="card-img-top" src="style/img/coworkers-sm.jpg" alt="coworkers discussing" ">
+                        <div class="card-body bg-info">
+                            <h4 class="card-title">Coworkers</h4>
+                        </div>
+                    </div>
+                </div> 
+            </div><br>
+            <div class="col-sm">or many more.</div>
+            <hr>
+            <div class="col-sm">If you want to see the appointments you can currently vote for, just click <button class="btn btn-info" type="button" id="show-app"> here</button> and get started.</div>
             <br>
-        </div>
-
-        <div id="appointments">
-            <table id="app-tab" class="table table-responsive table-sm">
-                <thead>
+        </div> 
+    </div>
+    <div class="container">
+        <div id="success" class="col-sm success"></div>
+        <div id="error" class="col-sm error"></div>
+        <div id="appointments" class="container">
+            <table id="app-tab" class="table table-responsive table-sm table-hover">
+                <thead class="table-info">
                     <th>Title</th>
                     <th>Location</th>
                     <th>Date</th>
                     <th>Expires on</th>
-                    <th>more Information</th>
+                    <th>Info</th>
+                    <th>Delete</th>
                 </thead>
-                <tbody id="appointment-list"></tbody>
+                <tbody id="appointment-list" class="table-light"></tbody>
             </table>
-        </div>
-        <div id="error" class="col-sm error"></div>
+        </div> 
     </div>
 </body>
 </html>

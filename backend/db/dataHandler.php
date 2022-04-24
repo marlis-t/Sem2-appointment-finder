@@ -89,6 +89,17 @@ class Database{
 
     }
 
+    function deleteAppointment($app_Id){
+        $stmt = $this->conn->prepare("DELETE FROM appointment where app_Id=?");
+        $stmt->bind_param("i", $app_Id,);
+        if($stmt->execute()){
+            $stmt->close();
+            return true;
+        }
+        $stmt->close();
+        return false;
+    }
+
 }
 
 

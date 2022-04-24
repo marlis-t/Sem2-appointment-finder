@@ -6,9 +6,15 @@ $(document).ready(function() {
     .then(data => {
         document.querySelector("navbar").innerHTML = data;
     });
+
+    /*var seconds = 5;
+    $("#counter").text(seconds);
+    setInterval(function () {
+        seconds--;
+        $("#counter").text(seconds);
+        if (seconds == 1) {
+            location.href = "/Sem2-appointment-finder/frontend/index.html";
+        }
+    }, 1000);*/
     
 });
-
-function toStart() {
-    location.href = "/Sem2-appointment-finder/frontend/index.html";
-}
