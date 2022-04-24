@@ -11,7 +11,7 @@ function showAppointments(){
         success: function (response) {
             var myResponse = response;
             if(myResponse === "no result found"){
-                $("#error").append("No appointments in database");
+                $("#error").append("<div class='alert alert-warning'>No appointments in database</div>");
             }
             else{
                 $.each(myResponse, function(i, p) {
@@ -29,15 +29,13 @@ function showAppointments(){
             }
         },
         error: function(e){
-            $("#error").append("An error occurred while loading the data");
-            //$("#appointments").fadeIn("slow");
+            $("#error").append("<div class='alert alert-danger'>An error occurred while loading the data about the appointments.</div>");
         }
     });
 }
 
 function toTermine(app_Id){
     if($("#"+app_Id).hasClass("expired")){
-        //works
         sessionStorage.setItem("app_Id", app_Id);
         sessionStorage.setItem("expired", "yes");
     }

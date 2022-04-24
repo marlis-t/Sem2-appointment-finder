@@ -25,8 +25,6 @@ class Logic{
                 return $this->getExpired();
             case "uploadChoice":
                 return $this->uploadChoice();
-            case "alreadyVoted":
-                return $this->alreadyVoted();
             case "deleteAppointment":
                 return $this->deleteApp();
             default:
@@ -61,18 +59,6 @@ class Logic{
         //only ids, get into array
         $result = getExpiredId();
         return $result;
-    }
-
-    private function alreadyVoted(){
-        $fk_term_Id = $_POST["fk_term_Id"];
-        $username = $_POST["username"];
-
-        $result = $this->db->alreadyVoted($fk_term_Id, $username);
-
-        if ($result->num_rows === 0){
-            return "upload possible";
-        }
-        return null;
     }
 
     private function uploadChoice(){

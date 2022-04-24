@@ -76,7 +76,8 @@ function getExpiredId(){
     $result = $db->getExpired();
 
     if($result->num_rows === 0){
-        return "no expired appointments";
+        return "no expired appointments"; 
+        
     }
 
     $expList = array();

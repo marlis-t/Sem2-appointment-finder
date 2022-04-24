@@ -1,14 +1,57 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(255, 255, 255);
+    
 }
 img{
-    width: 100%;
-    height: 100%;
+    
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
-#error{
-    color:#410000;
+.card{
+    width: 330px;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
 }
-#success{
-    color:#001d00;
+#error, .error{
+    font-weight: bold;
+    padding: 10px;
+}
+#success, .success{
+    font-weight: bold;
+    padding: 10px;
+}
+tr{
+    background-color:rgb(250, 250, 250);
+    
+}
+tr:hover {
+    background-color:rgb(226, 249, 255);
+    filter: brightness(97%);
+  }
+
+.expired{
+    background-color:rgb(223, 222, 222);
+    border-style:dashed;
+    border-width: 2px;
+    border-color:rgb(143, 143, 143);
+}
+.expired:hover{
+    background-color:rgb(191, 207, 211);
+}
+
+#exp-info{
+    border-style: dashed;
+    border-width: 2px;
+    border-color:rgb(143, 143, 143);
+}
+ #sel-msg, .modal-header, .modal-footer{
+    margin: 0px;
+}
+.card{
+    text-align:center;
 }
 

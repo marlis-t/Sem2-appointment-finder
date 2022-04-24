@@ -1,13 +1,16 @@
-function showTermine(){
-    //call is exp function with app_Id, if it is, no adding of checkbox
-
+function showOneAppointment(){
+    $("#exp").empty();
     var app_Id = sessionStorage.getItem("app_Id");
     var exp = sessionStorage.getItem("expired");
     if(exp == "yes"){
-      $("#exp").text("This appointment is expired. Voting is no longer possible."); 
-      $("#sel-msg").empty(); 
+      $("#exp").append("<div class='alert alert-warning'>This appointment is expired. Voting is no longer possible.</div>"); 
+      
     }
-    
+    else{
+        $("#sel-msg").addClass("alert alert-info");
+        $("#sel-msg").append("All possible timeslots for the selected appointment are depicted below:");  
+    }
+     
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
@@ -41,7 +44,12 @@ function showTermine(){
         }
     });
 
+    showTermine(app_Id);
+}
 
+function showTermine(app_Id) {
+
+    $("#finVote").remove();
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
@@ -60,6 +68,8 @@ function showTermine(){
                 $.each(myResponse, function(i, p) {
                     $("#termin-list").append("<tr id ='" + p["termin_Id"] + "'><td>" + p["termin_Id"] + "</td><td>" + p["time"] + " o'clock</td><td><div class='form-check custom-checkbox'><input class='form-check-input' type='checkbox' id='checkbox"+p["termin_Id"] +"'><label class='form-check-label'> vote </label></div></td><td><button onclick='showVotes("+ p["termin_Id"]+")' id = 'showcom' class = 'btn btn-info'>></button></td></tr>");
                 });
+
+                $("<button type='button' id='finVote' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#finishModal'>Finish</button><br>").insertAfter("#comment");
 
                 if(exp=="yes"){
                     $("input[id^='checkbox']").attr("disabled", true);
@@ -83,8 +93,3 @@ function showTermine(){
         }
     });
 }
-
-
-
-
-//onlick showcom function in another file, gathers comments

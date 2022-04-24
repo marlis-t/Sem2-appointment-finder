@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     $("#comment").hide();
     $("#termine").hide();
-    showTermine();
+    showOneAppointment();
 
     function disableBack() {
         window.history.forward()

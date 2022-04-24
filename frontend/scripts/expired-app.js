@@ -1,7 +1,5 @@
 //get id of the xpired ones
 function getExpiredApp(){
-    //all expired ones toggle class expired
-    //still more clickable
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
@@ -13,6 +11,7 @@ function getExpiredApp(){
         success: function (response) {
             var expArray = response;
             if(expArray !== "no expired appointments"){
+            //if(expArray !== "no expired appointments")
                 
                 $("#appointment-list tr").each(function(){
                     var trId = $(this).attr("id");
@@ -27,14 +26,12 @@ function getExpiredApp(){
                     }
 
                 });
+                $("#exp-msg").append("<div id='exp-info' class='alert alert-secondary'>*Greyed-out appointments are expired. You cannot vote for them anymore, but viewing the placed votes and comments is still possible.</div>")
             }
-            /*$.each(expArray, function(i, p) {
-                $("#error").append(p + ", ");
-            });*/
             
         },
         error: function(e){
-            $("#error").append("An error occured while loading the data");
+            $("#error").append("<div class='alert alert-danger'>An error occured while loading the data about appointment expiry.</div>");
         }
     });
 }
