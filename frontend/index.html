@@ -15,11 +15,12 @@
     <script src="scripts/deleteApp.js"></script>
 </head>
 
-<navbar></navbar>
+<navbar></navbar><!---in external file to keep documents clean--->
 <body>
     <div class="col-sm container-fluid">
-        <h2 class="col-sm alert alert-info" id="heading">Welcome to the <strong>AppointmentFinder!</strong></h2>
+        <h2 class="col-sm alert alert-info" id="heading">Welcome to the <strong>Appointment-Finder!</strong></h2>
     </div>
+    <!--only welcome screen-->
     <div class="container">
         <div id="welcome">
             <div class="col-sm">Find the ideal timeslot for all your meetings, be it with:</div><br>
@@ -57,6 +58,7 @@
             <br>
         </div> 
     </div>
+    <!--appointments filled in here-->
     <div class="container">
         <div id="success" class="col-sm success"></div>
         <div id="error" class="col-sm error"></div>
@@ -75,6 +77,7 @@
         </div> 
     </div>
     <br>
+    <!--information about expired elements only if those exist-->
     <div id="expired-msg" class="container-fluid"></div>
     
 </body>

@@ -3,10 +3,20 @@ body{
     background-color: rgb(255, 255, 255);
     
 }
-img{
+.nav-img{
+    max-width: 100%;
+    height: auto;
+    color: white;
+}
+.card-img-top{
     
     margin-top: 1%;
     margin-bottom: 1%;
+}
+#home{
+    color: black;
+    font-weight: bold;
+
 }
 .card{
     width: 330px;

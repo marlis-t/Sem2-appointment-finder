@@ -19,6 +19,7 @@
         <div class="container">
             <h2 class="col-sm heading">Here you can see further information!</h2> <br>
             <div class="col-sm">
+                <!--information is requested from database according to selected appointment-->
                 <h5 class="heading">Details of the selected appointment:</h5>
                 <ul id="app-info"></ul>
                 <h5 class="heading" id="exp"></h5>
@@ -26,8 +27,10 @@
             <div id="welcome">
                 <div id="sel-msg"></div>
             </div>
+            <!--space for error and success messages that might occur-->
             <div id="error" class="col-sm error"></div>
             <div id="success" class="col-sm success"></div>
+            <!--table is same concept as for appointments-->
             <div id="termine">
                 <table id="term-tab" class="table table-responsive table-sm table-hover">
                     <thead class="table-info">
@@ -40,6 +43,7 @@
                 </table>
             </div><br>
             
+            <!--space for display of comments, not visible-->
             <div id="comment">
                 <h5 id="comHead" class="heading"></h5>
                 <table id="vote-tab" class="table table-responsive table-sm">
@@ -51,8 +55,9 @@
                     <tbody id="vote-list"></tbody>
                 </table>
             </div><br>
+            <!--finalizes voting-->
             <button type="button" id="finVote" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#finishModal">Finish</button> <br>
-            
+            <!--is included from another file-->
             <modal></modal>
             <br>
         </div>

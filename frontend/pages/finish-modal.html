@@ -1,3 +1,4 @@
+<!--used as popup before leaving the voting-->
 <div class="modal" id="finishModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -10,6 +11,7 @@
             <div class="modal-body">Are you sure you want to <strong>finish voting?</strong> <br> You will not be able to go back to this page.</div>
             <!-- Modal footer -->
             <div class="modal-footer alert alert-info">
+                <!--works as confirmation, activates "leaving" in startTerm-->
                 <button type="button" class="btn btn-success" onclick="finishVoting()">Finish voting</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue voting</button>
             </div>
