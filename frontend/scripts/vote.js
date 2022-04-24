@@ -1,93 +1,74 @@
 function uploadChoice(term_Id){
-    $("#error").empty();
-    $("#success").empty();
-    $("#errorCode").removeClass();
-   
-     var allOk = true;
-     var username = $("#username"+term_Id).val();
-     var comment = $("#userComment"+term_Id).val();
+    
+    emptyInVotes();
+    var allOk = true;
+    var username = $("#username"+term_Id).val();
+    var comment = $("#userComment"+term_Id).val();
  
-     //checkIfAlreadyVoted(term_Id, username);
-     allOk = checkIfAlphanumeric(allOk, term_Id);
+    allOk = checkIfAlphanumeric(allOk, term_Id);
      
-     //alert($("#errorCode").hasClass("aV"));
-     
-     /*if($("#errorCode").hasClass("aV")){
-        allOk = false;
-        $("#error").append("class is set");
-    }*/
-     if(allOk===true) {
-         submitInput(term_Id, username, comment);
+    if(allOk===true) {
+        submitInput(term_Id, username, comment);
     }
 }
  
- function checkIfAlphanumeric(allIsOk, term_Id){
+function emptyInVotes(){
+    $("#error").empty();
+    $("#success").empty(); 
+}
+
+function checkIfAlphanumeric(allIsOk, term_Id){
     var allOk = allIsOk;
     var username = $("#username"+term_Id).val();
     if(username.length === 0) {
-        $("#error").append("You must type in a username to vote for timeslot #"+term_Id);
+        $("#error").append("<div class='alert alert-danger'>You must type in a username to vote for timeslot #"+term_Id+".<br></div>");
+        var myTimeout = setTimeout(removeInfoPopup, 2000, 1);
         allOk = false;
         return allOk;
     }
     if(!/^[a-zA-Z0-9]+$/.test(username)){
         allOk = false;
-        $("#error").append("Only alphanumeric characters allowed for username in timeslot #"+term_Id);
+        $("#error").append("<div class='alert alert-danger'>Only alphanumeric characters allowed for username in timeslot #"+term_Id+".<br></div>");
+        var myTimeout = setTimeout(removeInfoPopup, 2000, 1);
         return allOk;
     }
     return allOk;
 }
  
- function checkIfAlreadyVoted(term_Id, username){
-     $.ajax({
-         type: "POST",
-         url: "/Sem2-appointment-finder/backend/requestHandler.php",
-         data: {
-             method: "alreadyVoted", 
-             fk_term_Id: term_Id,
-             username: username
-         },
-         cache: false,
-         dataType: "json",
-         success: function (response) {
-            /*if(response === "upload possible"){
-                $("#success").append(response);
-                
-            }*/
+function submitInput(term_Id, username, comment) {
+    $.ajax({
+        type: "POST",
+        url: "/Sem2-appointment-finder/backend/requestHandler.php",
+        data: {
+            method: "uploadChoice", 
+            fk_term_Id: term_Id,
+            username: username,
+            comment: comment
         },
-         error: function(e){
-             $("#error").append("<br>You already voted for this timeslot of the appointment");
-             //$("<tr id='errorUpload" + term_Id +"' class='error'><td>You already voted for this timeslot of that appointment</td></tr>").insertAfter("#vote"+term_Id);
-            $("#errorCode").addClass("aV");
-             
-        }
-    });
-}
- 
- function submitInput(term_Id, username, comment) {
-     $.ajax({
-         type: "POST",
-         url: "/Sem2-appointment-finder/backend/requestHandler.php",
-         data: {
-             method: "uploadChoice", 
-             fk_term_Id: term_Id,
-             username: username,
-             comment: comment
-         },
-         cache: false,
-         dataType: "json",
-         success: function (response) {
-             if(response === "completed"){
-                $("#success").append("The upload of your vote for timeslot #"+term_Id+" was successful");
+        cache: false,
+        dataType: "json",
+        success: function (response) {
+            var myResponse = response;
+            if(myResponse === "completed"){
+                //fade out mit delay, dann empty für alle benachrichtigungen
+                $("#success").append("<div class='alert alert-success'>The upload of your vote for timeslot #"+term_Id+" was successful.<br></div>");
                 $("#username"+term_Id).val("");
                 $("#userComment"+term_Id).val("");
+                var myTimeout = setTimeout(removeInfoPopup, 4000, 2);
+
+                if(!$("#comHead").is(':empty') || $("#comInfo").length){
+                    showVotes(term_Id);
+                }
             }
-            else if(response === "already voted"){
-                $("#error").append("<br>You already voted for this timeslot of the appointment, duplicate votes are not allowed.</br>");
+            else if(myResponse === "already voted"){
+                $("#error").append("<div class='alert alert-danger'>You already voted for this timeslot of the appointment, duplicate votes are not allowed.</br></div>");
+                var myTimeout = setTimeout(removeInfoPopup, 5000, 1);
             }
-         },
-         error: function(e){
-             $("#error").append("<br>An error occured while uploading your vote for timeslot #"+term_Id);
-         }
-     });
+        },
+        error: function(e){
+            $("#error").append("<div class='alert alert-danger'>An error occured while uploading your vote for timeslot #"+term_Id+".<br></div>");
+            var myTimeout = setTimeout(removeInfoPopup, 4000, 1);
+        }
+    });
  
- }
+}

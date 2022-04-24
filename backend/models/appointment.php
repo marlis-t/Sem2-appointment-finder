@@ -18,9 +18,12 @@ function getAppointmentData(){
 
     $db = new Database();
     $result = $db->getAppointments();
-    if(!isset($result)){
+    if($result->num_rows === 0){
+        //if no appointments in database
         return "no result found";
     }
+
+    //array of objects created, sql result saved for easy acces later on
     $appList = array();
     foreach($result as $row){
 
@@ -36,6 +39,7 @@ function getAppointmentData(){
         array_push($appList, $app);
     }
 
+    //if null here, filling of array went wrong
     if($appList[0] == null)
     {
         return null;
@@ -46,9 +50,10 @@ function getAppointmentData(){
 function getOneAppointmentData($app_Id){
     $db = new Database();
     $result = $db->getOneAppointment($app_Id);
-    if(!isset($result)){
+    if($result->num_rows === 0){
         return "no result found";
     }
+    //same principle as above
     $appList = array();
     foreach($result as $row){
 
@@ -75,8 +80,9 @@ function getExpiredId(){
     $db = new Database;
     $result = $db->getExpired();
 
+    //no appointment is expired
     if($result->num_rows === 0){
-        return "no expired appointments";
+        return "no expired appointments"; 
     }
 
     $expList = array();
@@ -85,6 +91,7 @@ function getExpiredId(){
         array_push($expList, $expId);
     }
 
+    //returns array of id of expired appointments
     return $expList;
 }
 

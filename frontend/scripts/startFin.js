@@ -7,7 +7,7 @@ $(document).ready(function() {
         document.querySelector("navbar").innerHTML = data;
     });
 
-    /*var seconds = 5;
+    var seconds = 5;
     $("#counter").text(seconds);
     setInterval(function () {
         seconds--;
@@ -15,6 +15,6 @@ $(document).ready(function() {
         if (seconds == 1) {
             location.href = "/Sem2-appointment-finder/frontend/index.html";
         }
-    }, 1000);*/
+    }, 1000);
     
 });

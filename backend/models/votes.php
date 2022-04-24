@@ -19,6 +19,7 @@ function getVotesData($fk_termin_Id){
         return "no votes found";
     }
 
+    //same principle as appointments
     $voteList = array();
     foreach($result as $row){
 

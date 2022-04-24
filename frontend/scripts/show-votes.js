@@ -1,8 +1,6 @@
 function showVotes(term_Id){
     $("#comment").fadeOut("fast");
-    $("#vote-list").empty();
-    $("#close-btn").empty();
-    $("#comHead").empty();
+    emptyInShowVotes();
     $.ajax({
         type: "POST",
         url: "/Sem2-appointment-finder/backend/requestHandler.php",
@@ -15,7 +13,7 @@ function showVotes(term_Id){
         success: function (response) {
             var myResponse = response;
             if(myResponse === "no votes found"){
-                $("#comHead").text("Nobody voted for this timeslot");
+                $("<div id='comInfo' class='alert alert-warning'>Nobody voted for this timeslot.</div>").insertBefore("#comment");
             }
             else{
                 $.each(myResponse, function(i, p) {
@@ -32,15 +30,29 @@ function showVotes(term_Id){
             }
         },
         error: function(e){
-            $("#error").append("<br>An error occured while loading data about the votes");
+            $("#error").append("<div class='alert alert-danger'>An error occured while loading the data about the votes.</div>");
+            var myTimeout = setTimeout(removeInfoPopup, 5000, 1);
         }
     });
 
 }
 
 function hideVotes() {
-    $("#comment").fadeOut("fast");
+    var fade = function() {
+        return $("#comment").fadeOut("fast");
+    };
+
+    $.when(fade()).done(function() {
+        $("#vote-list").empty();
+        $("#comHead").empty();
+        $("#close-btn").empty();
+    });
+}
+
+function emptyInShowVotes(){
     $("#vote-list").empty();
-    $("#comHead").empty();
     $("#close-btn").empty();
+    $("#comInfo").remove();
+    $("#comHead").empty();
+    $("#error").empty();
 }
