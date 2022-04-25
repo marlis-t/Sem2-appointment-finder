@@ -12,10 +12,12 @@ function showVotes(term_Id){
         dataType: "json",
         success: function (response) {
             var myResponse = response;
+            //msg if nobody voted yet
             if(myResponse === "no votes found"){
                 $("<div id='comInfo' class='alert alert-warning'>Nobody voted for this timeslot.</div>").insertBefore("#comment");
             }
             else{
+                //adding votes in table
                 $.each(myResponse, function(i, p) {
                     var user_termin_Id = p["user_termin_Id"];
                     var fk_termin_Id = p["fk_termin_Id"];
@@ -24,6 +26,7 @@ function showVotes(term_Id){
 
                     $("#vote-list").append("<tr id ='" + user_termin_Id + "'><td>" + username + "</td><td>" + comment + "</td><td></td></tr>");                
                 });
+                //append more information like button to close 
                 $("#comHead").append("These users voted for timeslot <span class='badge bg-info'>#"+term_Id+"</span>");
                 $("#close-btn").append("<button onclick='hideVotes()' id = 'hidvotes' class = 'btn btn-danger'>\u00D7</button>");
                 $("#comment").fadeIn("slow");
@@ -42,6 +45,7 @@ function hideVotes() {
         return $("#comment").fadeOut("fast");
     };
 
+    //only empties comments if fadeOut is completed
     $.when(fade()).done(function() {
         $("#vote-list").empty();
         $("#comHead").empty();
@@ -49,6 +53,7 @@ function hideVotes() {
     });
 }
 
+//clears up residue with every time showVotes is clicked
 function emptyInShowVotes(){
     $("#vote-list").empty();
     $("#close-btn").empty();

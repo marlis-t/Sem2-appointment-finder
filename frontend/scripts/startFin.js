@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    //fetches navbar
     fetch("navbar.html")
     .then(response => {
         return response.text()
@@ -7,9 +8,11 @@ $(document).ready(function() {
         document.querySelector("navbar").innerHTML = data;
     });
 
+    //starts off counter and redirection mechanism
     var seconds = 5;
     $("#counter").text(seconds);
     setInterval(function () {
+        //counts down secongs via interval
         seconds--;
         $("#counter").text(seconds);
         if (seconds == 1) {

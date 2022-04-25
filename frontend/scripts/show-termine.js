@@ -54,7 +54,7 @@ function showOneAppointment(){
 }
 
 function showTermine(app_Id) {
-
+    var exp = sessionStorage.getItem("expired");
     //clears up possible residue
     $("#finVote").remove();
     $.ajax({
@@ -82,7 +82,7 @@ function showTermine(app_Id) {
                 $("<button type='button' id='finVote' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#finishModal'>Finish</button><br>").insertAfter("#comment");
 
                 //if appointment is expired, disable checkboxes and voting for timeslots
-                if(exp=="yes"){
+                if(exp =="yes"){
                     $("input[id^='checkbox']").attr("disabled", true);
                 }
 
